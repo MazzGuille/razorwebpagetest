@@ -1,0 +1,32 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+<div>
+    <component type="typeof(CustomButton)"
+               render-mode="ServerPrerendered"
+               param-ButtonClass="@("btn btn-danger")"
+               param-ChildContent="@("click me privately")"
+               param-btnId="@("testBtn")" />
+</div>    
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var button = document.getElementById('testBtn');
+            if (button) {
+                button.addEventListener('click', () => {
+                    HandleButtonClick();
+                });
+            }
+        });
+
+        function HandleButtonClick() {
+            alert('Button clicked in private!');
+        }
+    </script>
+}

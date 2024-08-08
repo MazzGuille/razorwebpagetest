@@ -1,0 +1,54 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div>
+    <component type="typeof(CustomButton)" 
+               render-mode="ServerPrerendered" 
+               param-ButtonClass="@("btn btn-primary")" 
+               param-ChildContent="@("click me")" 
+               param-btnId="@("testBtn")" />
+</div>
+<br />
+<div>
+    <component type="typeof(CustomButton)"
+               render-mode="ServerPrerendered"
+               param-ButtonClass="@("btn btn-info")"
+               param-ChildContent="@("click me 2")"
+               param-btnId="@("testBtnTwo")" />
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var button = document.getElementById('testBtn');
+            var buttonTwo = document.getElementById('testBtnTwo');
+
+            if (button) {
+                button.addEventListener('click', () => {
+                    HandleButtonClick();
+                });
+            }
+
+            if (buttonTwo) {
+                buttonTwo.addEventListener('click', () => {
+                    HandleButtonClickTwo();
+                });
+            }
+
+            function HandleButtonClick() {
+                alert('Button clicked!');
+            }
+
+            function HandleButtonClickTwo() {
+                alert('Button two clicked!');
+            }
+        });
+    </script>
+}
